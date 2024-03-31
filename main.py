@@ -1,25 +1,20 @@
-from AnalizadorSintactico import AnalizadorSintactico
 from Gramatica import Gramatica
+from Nodizador import Nodizador
 from Produccion import Produccion
 
 def __main__():
     print("¡Estructuras de lenguajes!")
 
-    gramatica = Gramatica(["a", "b"], ["A", "B", "S"], [
+    gramatica = Gramatica(["a", "b"], ["S","A", "B"], [
                           Produccion("S", ["aB", "bA"]), Produccion("A", ["a", "aS", "bAA"]), Produccion("B", ["b", "bS", "aBB"])], "S")
 
     gramatica.determinarRecursion()
     gramatica.mostrarProducciones()
-    analizador = AnalizadorSintactico(gramatica)
+    nodizador = Nodizador(gramatica)
+    nodizador.crearArbol()
+    nodizador.mostrarArbol()
 
     palabra = "ab"
-    if analizador.analizar(palabra):
-        print(f'La palabra "{palabra}" pertenece a la gramática.')
-        # Mostrar árbol de derivación
-        print("Árbol de derivación:")
-        print(analizador.arbol_derivacion.imprimir_arbol())
-    else:
-        print(f'La palabra "{palabra}" no pertenece a la gramática.')
 
 if __name__ == "__main__":
     __main__()

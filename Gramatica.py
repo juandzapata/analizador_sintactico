@@ -8,7 +8,6 @@ class Gramatica():
         self.noTerminales = noTerminales
         self.producciones = producciones
         self.inicial = inicial
-        self.producciones_dict = defaultdict(list) 
     
     def determinarRecursion(self) -> bool:
         for produccion in self.producciones:
@@ -47,10 +46,3 @@ class Gramatica():
 
     def es_no_terminal(self, simbolo: str) -> bool:
         return simbolo in self.noTerminales
-
-    def obtener_producciones(self, no_terminal: str) -> list:
-        producciones = []
-        for produccion in self.producciones:
-            if produccion.nombre == no_terminal:
-                producciones.append(produccion)
-        return producciones
